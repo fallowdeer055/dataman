@@ -1,10 +1,12 @@
 package org.fallowdeer055.dataman.scenario.simple;
 
 import static org.hamcrest.CoreMatchers.hasItem;
+import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.Matchers.empty;
+import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasSize;
 import static org.junit.Assert.assertThat;
 
@@ -42,7 +44,8 @@ public class SimpleEntityListTest {
 		List<Employee> employees = employeeList.getEntities();
 
 		assertThat(employees, not(empty()));
-		assertThat(employees, hasItem(new Employee("John", "Deer", 5)));
+		assertThat (employees.get(0), instanceOf(Employee.class));
+		assertThat(employees, hasItem(equalTo(new Employee("John", "Deer", 5))));
 		assertThat (employees, hasSize(5));
 
 	}

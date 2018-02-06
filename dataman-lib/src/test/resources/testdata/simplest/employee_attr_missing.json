@@ -1,0 +1,26 @@
+[
+	{
+		"firstname": "John",
+		"lastname": "Deer",
+		"department": 5
+	},
+	{
+		"firstname": "Peter",
+		"lastname": "Brown",
+		"department": 5
+	},
+	{
+		"firstname": "Jack",
+		"lastname": "Yellow",
+		"department": 5
+	},
+	{
+		"firstname": "John",
+		"department": 3
+	},
+	{
+		"firstname": "Ben",
+		"lastname": "Utzer",
+		"department": 3
+	}
+]

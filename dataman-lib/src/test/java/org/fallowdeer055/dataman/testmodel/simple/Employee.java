@@ -2,6 +2,11 @@ package org.fallowdeer055.dataman.testmodel.simple;
 
 public class Employee {
 
+	@Override
+	public String toString() {
+		return "Employee [firstname=" + firstname + ", lastname=" + lastname + ", department=" + department + "]";
+	}
+
 	private String firstname;
 	private String lastname;
 	private int department;
