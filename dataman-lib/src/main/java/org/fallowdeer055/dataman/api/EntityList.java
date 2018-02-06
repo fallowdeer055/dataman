@@ -1,5 +1,9 @@
 package org.fallowdeer055.dataman.api;
 
-public interface EntityList {
+import java.util.List;
+
+public interface EntityList<T> {
+	
+	public List<T> getEntities();
 
 }
