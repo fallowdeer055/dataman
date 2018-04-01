@@ -16,6 +16,7 @@ import java.util.List;
 
 import org.fallowdeer055.dataman.api.EntityList;
 import org.fallowdeer055.dataman.api.EntityListFactory;
+import org.fallowdeer055.dataman.api.exception.MissingAttributeException;
 import org.fallowdeer055.dataman.testmodel.simple.Employee;
 import org.junit.Before;
 import org.junit.Test;
@@ -43,9 +44,22 @@ public class SimpleEntityListTest_Errors {
 
 	@Test
 	public void missingAttributeReporting() {
+		try {
 		EntityListFactory.createEntityList(missingAttrFile, Employee.class);
-		
-		fail("must have thrown an exception");
+		} catch ( MissingAttributeException mae) {
+			
+		}
+		fail("missing or wrong exception");
+	}
+	
+	@Test
+	public void unknownAttributeReporting() {
+		try {
+		EntityListFactory.createEntityList(unknownAttrFile, Employee.class);
+		} catch ( MissingAttributeException mae) {
+			
+		}
+		fail("missing or wrong exception");
 	}
 
 }
