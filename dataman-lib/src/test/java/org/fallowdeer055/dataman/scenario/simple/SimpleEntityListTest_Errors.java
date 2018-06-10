@@ -5,7 +5,7 @@ import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.CoreMatchers.notNullValue;
-import static org.hamcrest.Matchers.empty;
+import static org.hamcrest.Matchers.*;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasSize;
 import static org.junit.Assert.assertThat;
@@ -17,6 +17,7 @@ import java.util.List;
 import org.fallowdeer055.dataman.api.EntityList;
 import org.fallowdeer055.dataman.api.EntityListFactory;
 import org.fallowdeer055.dataman.api.exception.MissingAttributeException;
+import org.fallowdeer055.dataman.api.exception.UnexpectedAttributeException;
 import org.fallowdeer055.dataman.testmodel.simple.Employee;
 import org.junit.Before;
 import org.junit.Test;
@@ -45,21 +46,27 @@ public class SimpleEntityListTest_Errors {
 	@Test
 	public void missingAttributeReporting() {
 		try {
-		EntityListFactory.createEntityList(missingAttrFile, Employee.class);
-		} catch ( MissingAttributeException mae) {
-			
+			EntityListFactory.createEntityList(missingAttrFile, Employee.class);
+			fail("missing or wrong exception");
+		} catch (MissingAttributeException mae) {
+
 		}
-		fail("missing or wrong exception");
+
 	}
-	
+
 	@Test
 	public void unknownAttributeReporting() {
 		try {
-		EntityListFactory.createEntityList(unknownAttrFile, Employee.class);
-		} catch ( MissingAttributeException mae) {
-			
+			EntityListFactory.createEntityList(unknownAttrFile, Employee.class);
+			fail("missing or wrong exception");
+		} catch (UnexpectedAttributeException uae) {
+			assertThat(uae.getAttributeLocation(), is("employee_unknown_attr.json, line 21"));
+			assertThat(uae.getAttributeName(), is("unknownattribute"));
+			assertThat(uae.getMessage(), containsString(uae.getAttributeLocation()));
+			assertThat(uae.getMessage(), containsString(uae.getAttributeName()));
+
 		}
-		fail("missing or wrong exception");
+
 	}
 
 }
