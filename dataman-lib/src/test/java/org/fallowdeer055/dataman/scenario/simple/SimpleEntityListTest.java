@@ -44,9 +44,9 @@ public class SimpleEntityListTest {
 		List<Employee> employees = employeeList.getEntities();
 
 		assertThat(employees, not(empty()));
-		assertThat (employees.get(0), instanceOf(Employee.class));
+		assertThat(employees.get(0), instanceOf(Employee.class));
 		assertThat(employees, hasItem(equalTo(new Employee("John", "Deer", 5))));
-		assertThat (employees, hasSize(5));
+		assertThat(employees, hasSize(5));
 
 	}
 

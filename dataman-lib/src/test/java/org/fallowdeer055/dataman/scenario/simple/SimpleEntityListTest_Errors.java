@@ -1,20 +1,12 @@
 package org.fallowdeer055.dataman.scenario.simple;
 
-import static org.hamcrest.CoreMatchers.hasItem;
-import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.not;
-import static org.hamcrest.CoreMatchers.notNullValue;
-import static org.hamcrest.Matchers.*;
-import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.hasSize;
+import static org.hamcrest.Matchers.containsString;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.fail;
 
 import java.io.File;
-import java.util.List;
 
-import org.fallowdeer055.dataman.api.EntityList;
 import org.fallowdeer055.dataman.api.EntityListFactory;
 import org.fallowdeer055.dataman.api.exception.MissingAttributeException;
 import org.fallowdeer055.dataman.api.exception.UnexpectedAttributeException;
@@ -49,22 +41,22 @@ public class SimpleEntityListTest_Errors {
 			EntityListFactory.createEntityList(missingAttrFile, Employee.class);
 			fail("missing or wrong exception");
 		} catch (MissingAttributeException mae) {
-
+			assertThat(mae.getAttributeName(), is("lastname"));
+			assertThat(mae.getErrorLocation(), is("employee_attr_missing.json, line 20") );
+			assertThat(mae.getMessage(), is("Missing attribute lastname in employee_attr_missing.json, line 20"));
 		}
 
 	}
 
 	@Test
-	public void unknownAttributeReporting() {
+	public void unexpectedAttributeReporting() {
 		try {
 			EntityListFactory.createEntityList(unknownAttrFile, Employee.class);
 			fail("missing or wrong exception");
 		} catch (UnexpectedAttributeException uae) {
-			assertThat(uae.getAttributeLocation(), is("employee_unknown_attr.json, line 21"));
+			assertThat(uae.getErrorLocation(), is("employee_unknown_attr.json, line 21"));
 			assertThat(uae.getAttributeName(), is("unknownattribute"));
-			assertThat(uae.getMessage(), containsString(uae.getAttributeLocation()));
-			assertThat(uae.getMessage(), containsString(uae.getAttributeName()));
-
+			assertThat(uae.getMessage(), is("Unexpected attribute unknownattribute in employee_unknown_attr.json, line 21"));
 		}
 
 	}

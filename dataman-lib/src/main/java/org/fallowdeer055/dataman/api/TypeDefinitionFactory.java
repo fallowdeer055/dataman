@@ -22,7 +22,7 @@ public class TypeDefinitionFactory {
 	public <T> StructureType fromJavaType(Class<T> clazz) {
 		final StructureTypeImpl typeDef = new StructureTypeImpl();
 		Arrays.stream(clazz.getDeclaredFields()).forEachOrdered(field -> {
-				typeDef.addField(field.getName(), UndefinedType.getInstance());
+			typeDef.addField(field.getName(), UndefinedType.getInstance());
 		});
 		return typeDef;
 	}
