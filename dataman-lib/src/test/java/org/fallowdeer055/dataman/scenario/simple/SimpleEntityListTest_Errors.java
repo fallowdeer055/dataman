@@ -1,7 +1,6 @@
 package org.fallowdeer055.dataman.scenario.simple;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.Matchers.containsString;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.fail;
 
@@ -42,7 +41,7 @@ public class SimpleEntityListTest_Errors {
 			fail("missing or wrong exception");
 		} catch (MissingAttributeException mae) {
 			assertThat(mae.getAttributeName(), is("lastname"));
-			assertThat(mae.getErrorLocation(), is("employee_attr_missing.json, line 20") );
+			assertThat(mae.getErrorLocation(), is("employee_attr_missing.json, line 20"));
 			assertThat(mae.getMessage(), is("Missing attribute lastname in employee_attr_missing.json, line 20"));
 		}
 
@@ -56,7 +55,8 @@ public class SimpleEntityListTest_Errors {
 		} catch (UnexpectedAttributeException uae) {
 			assertThat(uae.getErrorLocation(), is("employee_unknown_attr.json, line 21"));
 			assertThat(uae.getAttributeName(), is("unknownattribute"));
-			assertThat(uae.getMessage(), is("Unexpected attribute unknownattribute in employee_unknown_attr.json, line 21"));
+			assertThat(uae.getMessage(),
+					is("Unexpected attribute unknownattribute in employee_unknown_attr.json, line 21"));
 		}
 
 	}

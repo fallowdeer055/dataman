@@ -18,5 +18,5 @@ public class MissingAttributeException extends EntityListCreationException {
 	public String getMessage() {
 		return "Missing attribute " + attributeName + " in " + getErrorLocation();
 	}
-	
+
 }

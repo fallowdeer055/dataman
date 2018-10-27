@@ -14,5 +14,4 @@ public class EntityListCreationException extends RuntimeException {
 		this.errorLocation = errorLocation;
 	}
 
-
 }
