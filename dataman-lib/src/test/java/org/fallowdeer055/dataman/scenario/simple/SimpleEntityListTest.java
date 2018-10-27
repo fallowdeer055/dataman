@@ -15,19 +15,24 @@ import java.util.List;
 
 import org.fallowdeer055.dataman.api.EntityList;
 import org.fallowdeer055.dataman.api.EntityListFactory;
+import org.fallowdeer055.dataman.impl.EntityListFactoryImpl;
 import org.fallowdeer055.dataman.testmodel.simple.Employee;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class SimpleEntityListTest {
 
-	private File fileWithJsonData;
+	private static File fileWithJsonData;
+	private static EntityListFactory entityListFactory;
+	
 	private static final String FILE_PATH = "testdata/simplest/employee.json";
 
-	@Before
-	public void setup() {
-		String path = this.getClass().getClassLoader().getResource(FILE_PATH).getFile();
+	@BeforeClass
+	public static void setup() {
+		String path = SimpleEntityListTest.class.getClassLoader().getResource(FILE_PATH).getFile();
 		fileWithJsonData = new File(path);
+		entityListFactory = EntityListFactory.getInstance();
 	}
 
 	@Test
@@ -38,7 +43,7 @@ public class SimpleEntityListTest {
 
 	@Test
 	public void simple() {
-		EntityList<Employee> employeeList = EntityListFactory.createEntityList(fileWithJsonData, Employee.class);
+		EntityList<Employee> employeeList = entityListFactory.createEntityList(fileWithJsonData, Employee.class);
 		assertThat(employeeList, notNullValue());
 
 		List<Employee> employees = employeeList.getEntities();

@@ -1,8 +1,9 @@
-package org.fallowdeer055.dataman.api;
+package org.fallowdeer055.dataman.impl;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
+import org.fallowdeer055.dataman.api.TypeDefinitionFactory;
 import org.fallowdeer055.dataman.api.types.StructureType;
 import org.junit.Test;
 
