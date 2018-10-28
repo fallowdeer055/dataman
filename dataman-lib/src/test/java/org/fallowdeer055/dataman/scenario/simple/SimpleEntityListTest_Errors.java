@@ -10,7 +10,6 @@ import org.fallowdeer055.dataman.api.EntityListFactory;
 import org.fallowdeer055.dataman.api.exception.MissingAttributeException;
 import org.fallowdeer055.dataman.api.exception.UnexpectedAttributeException;
 import org.fallowdeer055.dataman.testmodel.simple.Employee;
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
